@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+
+actor "Читатель" as Reader
+actor "Библиотекарь" as Librarian
+actor "Администратор" as Admin
+
+Librarian --|> Reader
+Admin --|> Librarian
+
+rectangle "Система управления библиотекой" {
+
+  Reader -- (Регистрация пользователя)
+  Reader -- (Просмотр каталога книг)
+  Reader -- (Поиск книг)
+  Reader -- (Бронирование книги)
+  Reader -- (Отмена бронирования)
+  Reader -- (Просмотр истории бронирований)
+
+  (Просмотр каталога книг) <|-- (Поиск книг)
+  (Бронирование книги) .> (Просмотр каталога книг) : <<include>>
+
+  Librarian -- (Управление книгами)
+  Librarian -- (Выдача книг)
+  Librarian -- (Возврат книг)
+  Librarian -- (Просмотр активных бронирований)
+
+  Admin -- (Управление филиалами)
+  Admin -- (Управление учетными записями)
+  Admin -- (Просмотр аналитики)
+}
+@enduml
