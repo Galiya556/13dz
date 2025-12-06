@@ -1,0 +1,14 @@
+@startuml
+[*] --> Idle
+
+Idle --> WaitingForMoney : выбор билета
+
+WaitingForMoney --> MoneyReceived : внесена сумма
+WaitingForMoney --> TransactionCanceled : отмена
+
+MoneyReceived --> TicketDispensed : выдать билет
+MoneyReceived --> TransactionCanceled : отмена
+
+TicketDispensed --> [*]
+TransactionCanceled --> Idle
+@enduml
